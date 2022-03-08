@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.guilherme.cursospring.domain.enums.TipoCliente;
 
 @Entity
@@ -30,6 +31,7 @@ public class Cliente implements Serializable {
 	private String cpfOucnpj;
 	private Integer tipo; //Internamente salva como um inteiro, mas externamente o sistema vai ver como um tipo TipoCliente
 	
+	@JsonManagedReference //Essa anotação usa a entidade Categoria como referência e busca os produtos associados a ela
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	

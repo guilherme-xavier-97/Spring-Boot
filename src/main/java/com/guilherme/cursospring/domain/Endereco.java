@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Endereco implements Serializable {
 	
@@ -24,6 +26,9 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 	
+	@JsonBackReference /* Como a referência ja foi definida na entidade Categoria, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar as categorias associadas aos produtos e os produtos associados
+	as categorias infinitamente */
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

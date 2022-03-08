@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Cidades implements Serializable{
 
@@ -20,6 +22,7 @@ public class Cidades implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonManagedReference //Essa anotação usa a entidade Categoria como referência e busca os produtos associados a ela
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private Estado estado;

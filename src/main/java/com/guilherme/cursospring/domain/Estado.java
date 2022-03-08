@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Estado implements Serializable{
 
@@ -21,6 +23,9 @@ public class Estado implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	@JsonBackReference /* Como a referência ja foi definida na entidade Categoria, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar as categorias associadas aos produtos e os produtos associados
+	as categorias infinitamente */
 	@OneToMany(mappedBy = "estado")
 	private List<Cidades> cidades = new ArrayList<Cidades>();
 	
