@@ -11,16 +11,16 @@ import javax.persistence.ManyToOne;
 public class ItemPedidoPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
 	private Produtos produto;
-	
-	
+
+
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -48,6 +48,6 @@ public class ItemPedidoPK implements Serializable {
 		ItemPedidoPK other = (ItemPedidoPK) obj;
 		return Objects.equals(pedido, other.pedido) && Objects.equals(produto, other.produto);
 	}
-	
-	
+
+
 }

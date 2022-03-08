@@ -28,7 +28,7 @@ import com.guilherme.cursospring.repositories.EnderecoRepository;
 import com.guilherme.cursospring.repositories.EstadoRepository;
 import com.guilherme.cursospring.repositories.ItemPedidoRepository;
 import com.guilherme.cursospring.repositories.PagamentoRepository;
-import com.guilherme.cursospring.repositories.PedidosRpository;
+import com.guilherme.cursospring.repositories.PedidosRepository;
 import com.guilherme.cursospring.repositories.ProdutosRepository;
 
 @SpringBootApplication
@@ -53,7 +53,7 @@ public class CursoSpringApplication implements CommandLineRunner { // Essa inter
 	private EnderecoRepository enderecoRepository;
 	
 	@Autowired
-	private PedidosRpository pedidosRepository;
+	private PedidosRepository pedidosRepository;
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
