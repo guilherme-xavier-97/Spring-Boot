@@ -2,12 +2,14 @@ package com.guilherme.cursospring.domain;
 
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -18,6 +20,9 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@ManyToMany(mappedBy = "categoria") //Como Produtos foi minha referencia, aqui eu só preciso dizer o relacionamento, não mapear
+	private List<Produtos> produtos = new ArrayList<>();
 	
 	public Categoria() {
 	}
@@ -42,6 +47,14 @@ public class Categoria implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public List<Produtos> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produtos> produtos) {
+		this.produtos = produtos;
 	}
 
 
@@ -76,6 +89,7 @@ public class Categoria implements Serializable {
 		return true;
 	}
 
+	
 }
 	
 	  
