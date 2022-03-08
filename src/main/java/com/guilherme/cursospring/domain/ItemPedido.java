@@ -13,7 +13,8 @@ public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@JsonIgnore
+	@JsonIgnore/* Como a referência ja foi definida em outra entidade, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar os relacionamentos associados infinitamente*/
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
@@ -66,7 +67,8 @@ public class ItemPedido implements Serializable {
 		this.preco = preco;
 	}
 
-	@JsonIgnore
+	@JsonIgnore /* Como a referência ja foi definida em outra entidade, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar os relacionamentos associados infinitamente*/
 	public Pedido getPedido() {
 		return id.getPedido();
 	}

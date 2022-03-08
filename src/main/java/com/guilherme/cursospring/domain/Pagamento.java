@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guilherme.cursospring.domain.enums.EstadoPagamento;
 
 @Entity
@@ -34,7 +34,8 @@ public abstract class Pagamento implements Serializable { /*sendo abstrata eu nu
 	private Integer estado; //Internamente salva como um inteiro, mas externamente o sistema vai ver como um tipo EstadoPagamento
 	
 	
-	@JsonBackReference
+	@JsonIgnore /* Como a referência ja foi definida em outra entidade, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar os relacionamentos associados infinitamente*/
 	@OneToOne
 	@JoinColumn(name = "pedido_id")
 	@MapsId //essa anotação compara os ids nas duas tabelas pra ver se são iguais

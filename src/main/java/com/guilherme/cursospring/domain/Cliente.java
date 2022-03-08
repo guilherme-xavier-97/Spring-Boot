@@ -15,8 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guilherme.cursospring.domain.enums.TipoCliente;
 
 @Entity
@@ -32,11 +31,11 @@ public class Cliente implements Serializable {
 	private String cpfOucnpj;
 	private Integer tipo; //Internamente salva como um inteiro, mas externamente o sistema vai ver como um tipo TipoCliente
 	
-	@JsonManagedReference //Essa anotação usa a entidade Categoria como referência e busca os produtos associados a ela
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@JsonBackReference
+	@JsonIgnore /* Como a referência ja foi definida em outra entidade, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar os relacionamentos associados infinitamente*/
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
