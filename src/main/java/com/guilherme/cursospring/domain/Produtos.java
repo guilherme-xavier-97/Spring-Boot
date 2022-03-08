@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produtos implements Serializable {
 
@@ -24,6 +26,9 @@ public class Produtos implements Serializable {
 	private String nome;
 	private Double preco;
 	
+	@JsonBackReference /* Como a referência ja foi definida na entidade Categoria, aqui eu uso essa anotação pro programa 
+	entender que a referencia ja ta la, senao ele vai buscar as categorias associadas aos produtos e os produtos associados
+	as categorias infinitamente */
 	@ManyToMany
 	@JoinTable(name= "PRODUTO_CATEGORIA", 
 			   joinColumns = @JoinColumn(name = "produto_id"),
