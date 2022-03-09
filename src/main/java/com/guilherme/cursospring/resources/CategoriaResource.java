@@ -2,6 +2,8 @@ package com.guilherme.cursospring.resources;
 
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.guilherme.cursospring.domain.Categoria;
+import com.guilherme.cursospring.dto.CategoriaDTO;
 import com.guilherme.cursospring.services.CategoriaService;
 
 @RestController
@@ -23,10 +26,25 @@ public class CategoriaResource {
 	private CategoriaService service;
 		
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> readOne(@PathVariable Integer id) {
 		
-		Categoria obj = service.read(id);
+		Categoria obj = service.readOne(id);
 		return ResponseEntity.ok().body(obj); 
+		
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> readAll() {
+		
+		List<Categoria> list = service.readAll();
+		/*
+		 O DTO serve pra manipular objetos. Nesse caso, na mihha classe "CategoriaDTO" eu defini que os únicos objetos que quero
+		 são o id e o nome, não quero os produtos atrelados às categorias. Desta forma, a lista geral de categorias (que vem com
+		 os produtos juntos) é convertida em outra lista "listDTO", que vai receber uma arrow function que inscia a classe CategoriaDTO
+		 e retorna só os dados que ela permite (id e nome)
+		 */
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO); 
 		
 	}
 	

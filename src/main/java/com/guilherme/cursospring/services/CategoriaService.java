@@ -1,5 +1,6 @@
 package com.guilherme.cursospring.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,14 @@ public class CategoriaService {
 	@Autowired //serve pra instanciar objetos por meio da injeção de dependecia
 	private CategoriaRepository repo;
 	
-	public Categoria read(Integer id) {
+	public Categoria readOne(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
 		Categoria.class.getName()));
+	}
+	
+	public List<Categoria> readAll() {
+		return repo.findAll();
 	}
 	
 	public Categoria insert (Categoria obj) {
@@ -28,12 +33,12 @@ public class CategoriaService {
 	}
 	
 	public Categoria update (Categoria obj) {
-		read(obj.getId());
+		readOne(obj.getId());
 		return repo.save(obj);
 	}
 	
 	public void delete (Integer id) {
-		read(id);
+		readOne(id);
 		try {
 			repo.deleteById(id);
 		}
