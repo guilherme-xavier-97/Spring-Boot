@@ -70,6 +70,11 @@ public class CursoSpringApplication implements CommandLineRunner { // Essa inter
 		
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat3 = new Categoria(null, "Eletrodomésticos");
+		Categoria cat4 = new Categoria(null, "Cama, Mesa e Banho");
+		Categoria cat5 = new Categoria(null, "Alimentos");
+		Categoria cat6 = new Categoria(null, "Roupas");
+		Categoria cat7 = new Categoria(null, "Limpeza");
 		
 		Produtos p1 = new Produtos(null, "Computador", 2000.00);
 		Produtos p2 = new Produtos(null, "Impressora", 800.00);
@@ -84,7 +89,7 @@ public class CursoSpringApplication implements CommandLineRunner { // Essa inter
 		p3.getCategoria().addAll(Arrays.asList(cat1));
 		
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2)); // esse Arrays as list permite que eu salve varios objetos de uma vez
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7)); // esse Arrays as list permite que eu salve varios objetos de uma vez
 		
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
