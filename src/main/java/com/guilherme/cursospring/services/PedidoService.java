@@ -14,7 +14,7 @@ public class PedidoService {
 	@Autowired //serve pra instanciar objetos por meio da injeção de dependecia
 	private PedidosRepository repo;
 	
-	public Pedido buscar(Integer id) {
+	public Pedido read(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
 		Pedido.class.getName()));

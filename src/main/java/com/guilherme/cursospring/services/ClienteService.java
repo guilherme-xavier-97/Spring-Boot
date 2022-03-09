@@ -14,7 +14,7 @@ public class ClienteService {
 	@Autowired //serve pra instanciar objetos por meio da injeção de dependecia
 	private ClienteRepository repo;
 	
-	public Cliente buscar(Integer id) {
+	public Cliente read(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
 		Cliente.class.getName()));
