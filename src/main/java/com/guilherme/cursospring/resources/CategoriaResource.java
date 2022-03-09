@@ -47,4 +47,10 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id) { //O Request Body converte os dados JSON para um objeto JAVA
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
