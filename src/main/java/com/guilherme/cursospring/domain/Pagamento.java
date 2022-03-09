@@ -48,7 +48,8 @@ public abstract class Pagamento implements Serializable { /*sendo abstrata eu nu
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado.getCod();
+		//operador ternario, pra caso não tenha um Estado de pagamento, ele atribua nulo, caso tenha, ele da o código
+		this.estado = (estado==null) ? null: estado.getCod(); 
 		this.pedido = pedido;
 	}
 

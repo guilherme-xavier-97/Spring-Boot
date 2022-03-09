@@ -37,8 +37,9 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria obj) {
-		readOne(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = readOne(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Integer id) {
@@ -62,5 +63,13 @@ public class CategoriaService {
 	//Essa função converte um objeto tipo Categoria para tipo Categoria DTO
 	public Categoria fromDTO(CategoriaDTO objDTO) {
 		return new Categoria(objDTO.getId(), objDTO.getNome());	
+	}
+	
+	/*
+	 Essa função atualiza no BD somente os campos que eu alterei, que no caso só estou liberando o nome, os outros dados
+	 como Estado de pagamento simplesmente são copiados do BD. obj são os dados do BD e newObj são os que serão alterados
+	 */
+	private void updateData(Categoria newObj, Categoria obj ) {
+		newObj.setNome(obj.getNome());		
 	}
 }
