@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.guilherme.cursospring.domain.Categoria;
+import com.guilherme.cursospring.dto.CategoriaDTO;
 import com.guilherme.cursospring.repositories.CategoriaRepository;
 import com.guilherme.cursospring.services.exceptions.ObjectNotFoundException;
 
@@ -55,5 +56,11 @@ public class CategoriaService {
 	public Page<Categoria> findPage (Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	
+	//Essa função converte um objeto tipo Categoria para tipo Categoria DTO
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria(objDTO.getId(), objDTO.getNome());	
 	}
 }
