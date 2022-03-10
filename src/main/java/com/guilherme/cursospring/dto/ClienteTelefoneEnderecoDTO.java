@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.guilherme.cursospring.services.validation.TipoClienteCheck;
 
-
+//o próprio JPA ja tem anotações pra validar CPF e CNPJ, porém não os dois de uma vez, por isso criei uma validação personalizada
 @TipoClienteCheck
 public class ClienteTelefoneEnderecoDTO implements Serializable {
 	
