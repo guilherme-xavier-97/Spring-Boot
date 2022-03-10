@@ -61,7 +61,7 @@ public class ClienteService {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
 			throw new com.guilherme.cursospring.services.exceptions.DataIntegrityViolationException(
-					"Não foi possível " + "excluir porque esta entidade esta vinculada com outras");
+					"Não foi possível " + "excluir porque este cliente possui pedidos feitos");
 
 		}
 
