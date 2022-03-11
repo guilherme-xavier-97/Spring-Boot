@@ -31,6 +31,7 @@ import com.guilherme.cursospring.repositories.PagamentoRepository;
 import com.guilherme.cursospring.repositories.PedidosRepository;
 import com.guilherme.cursospring.repositories.ProdutosRepository;
 
+
 @SpringBootApplication
 public class CursoSpringApplication implements CommandLineRunner { // Essa interface chama o método run automaticamente
 	
@@ -70,28 +71,54 @@ public class CursoSpringApplication implements CommandLineRunner { // Essa inter
 		
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
-		Categoria cat3 = new Categoria(null, "Eletrodomésticos");
-		Categoria cat4 = new Categoria(null, "Cama, Mesa e Banho");
-		Categoria cat5 = new Categoria(null, "Alimentos");
-		Categoria cat6 = new Categoria(null, "Roupas");
-		Categoria cat7 = new Categoria(null, "Limpeza");
+		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
+		Categoria cat4 = new Categoria(null, "Eletrônicos");
+		Categoria cat5 = new Categoria(null, "Jardinagem");
+		Categoria cat6 = new Categoria(null, "Decoração");
+		Categoria cat7 = new Categoria(null, "Perfumaria");
 		
 		Produtos p1 = new Produtos(null, "Computador", 2000.00);
 		Produtos p2 = new Produtos(null, "Impressora", 800.00);
 		Produtos p3 = new Produtos(null, "Mouse", 80.00);
-		
-		
+		Produtos p4 = new Produtos(null, "Mesa de escritório", 300.00);
+		Produtos p5 = new Produtos(null, "Toalha", 50.00);
+		Produtos p6 = new Produtos(null, "Colcha", 200.00);
+		Produtos p7 = new Produtos(null, "TV true color", 1200.00);
+		Produtos p8 = new Produtos(null, "Roçadeira", 800.00);
+		Produtos p9 = new Produtos(null, "Abajour", 100.00);
+		Produtos p10 = new Produtos(null, "Pendente", 180.00);
+		Produtos p11 = new Produtos(null, "Shampoo", 90.00);
+
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
-		
+
 		p1.getCategoria().addAll(Arrays.asList(cat1));
 		p2.getCategoria().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategoria().addAll(Arrays.asList(cat1));
+
+		cat2.getProdutos().addAll(Arrays.asList(p2, p4));
+		cat3.getProdutos().addAll(Arrays.asList(p5, p6));
+		cat4.getProdutos().addAll(Arrays.asList(p1, p2, p3, p7));
+		cat5.getProdutos().addAll(Arrays.asList(p8));
+		cat6.getProdutos().addAll(Arrays.asList(p9, p10));
+		cat7.getProdutos().addAll(Arrays.asList(p11));
+
+		p1.getCategoria().addAll(Arrays.asList(cat1, cat4));
+		p2.getCategoria().addAll(Arrays.asList(cat1, cat2, cat4));
+		p3.getCategoria().addAll(Arrays.asList(cat1, cat4));
+		p4.getCategoria().addAll(Arrays.asList(cat2));
+		p5.getCategoria().addAll(Arrays.asList(cat3));
+		p6.getCategoria().addAll(Arrays.asList(cat3));
+		p7.getCategoria().addAll(Arrays.asList(cat4));
+		p8.getCategoria().addAll(Arrays.asList(cat5));
+		p9.getCategoria().addAll(Arrays.asList(cat6));
+		p10.getCategoria().addAll(Arrays.asList(cat6));
+		p11.getCategoria().addAll(Arrays.asList(cat7));;
 		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7)); // esse Arrays as list permite que eu salve varios objetos de uma vez
 		
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		
 //---------------------------------------------------------------------------------------------------------------------------------
 		Estado est1 = new Estado(null, "Minas Gerais");
