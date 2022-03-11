@@ -12,6 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.guilherme.cursospring.domain.enums.EstadoPagamento;
 
 @Entity
@@ -22,7 +23,7 @@ import com.guilherme.cursospring.domain.enums.EstadoPagamento;
 												 null, e vice versa. Quando as subclasses tem poucos atributos, pode-se usar o "single"
 												 mas quando tem muitos atributos melhor usar o 'joined" pra evitar muitos valores nulos*/
 
-
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable { /*sendo abstrata eu nunca vou conseguir instanciar só a classe "pagamento"
 															sempre serão suas subclasses*/
 	

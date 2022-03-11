@@ -80,6 +80,14 @@ public class ItemPedido implements Serializable {
 	public Produtos getProduto() {
 		return id.getProduto();
 	}
+	
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
+	
+	public void setProduto(Produtos produto) {
+		id.setProduto(produto);
+	}
 
 	@Override
 	public int hashCode() {
