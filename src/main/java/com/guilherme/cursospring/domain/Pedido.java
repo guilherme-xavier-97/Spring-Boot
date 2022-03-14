@@ -1,8 +1,11 @@
 package com.guilherme.cursospring.domain;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -123,6 +126,33 @@ public class Pedido implements Serializable {
 		Pedido other = (Pedido) obj;
 		return Objects.equals(id, other.id);
 	}
+	@Override
+	public String toString() {
+		//Essa instancia serve pra deixar o valor em um formato de R$
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", Pedido feito em: ");
+		builder.append(sdf.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes\n");
+		for (ItemPedido ip: getItens()) {
+			builder.append(ip.toString());
+			return builder.toString();
+		}
+		
+		builder.append("Valor Total: ");
+		builder.append(nf.format(getValorTotal()));
+		
+		return builder.toString();
+	}
+	
+	
 
 
 }
