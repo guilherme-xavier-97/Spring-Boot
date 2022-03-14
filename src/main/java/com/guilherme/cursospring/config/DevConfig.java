@@ -18,7 +18,7 @@ public class DevConfig {
 	private DBService dbService;
 	
 	//Aqui eu pego o valor la do arquivo application-dev.properties e salvo na variavel strategy
-	@Value("{spring.jpa.hibernate.ddl-auto}")
+	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 	
 	@Bean
