@@ -24,6 +24,7 @@ public class DevConfig {
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
 		
+
 		//Aqui eu testo se o valor da variavel strategy recebeu um create ou não. Se não for create, n faz nada, se for, cria as tabelas no DB
 		if(!"create".equals(strategy)) {
 			return false;
