@@ -58,13 +58,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
-
-		private String json() {
-			long date = new Date().getTime();
-			return "{\"timestamp\": " + date + ", " + "\"status\": 401, " + "\"error\": \"Não autorizado\", "
-					+ "\"message\": \"Email ou senha inválidos\", " + "\"path\": \"/login\"}";
-		}
-
 		@Override
 		public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 				org.springframework.security.core.AuthenticationException exception)
@@ -74,6 +67,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			response.getWriter().append(json());
 
 		}
+		
+		private String json() {
+            long date = new Date().getTime();
+            return "{\"timestamp\": " + date + ", "
+                + "\"status\": 401, "
+                + "\"error\": \"Não autorizado\", "
+                + "\"message\": \"Email ou senha inválidos\", "
+                + "\"path\": \"/login\"}";
+        }
 	}
 
 }
