@@ -35,8 +35,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 		String header = request.getHeader("Authorization");
-		if (header != null && header.startsWith("Bearer ")) {
-			UsernamePasswordAuthenticationToken auth = getAuthentication(header.substring(7)); //7 é pq desconta 7 caracteres+ espaço da palavra "bearer ", ou seja,vai pegar realmente só o token
+		if (header != null) {
+			UsernamePasswordAuthenticationToken auth = getAuthentication(header); //7 é pq desconta 7 caracteres+ espaço da palavra "bearer ", ou seja,vai pegar realmente só o token
 			if (auth != null) {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
