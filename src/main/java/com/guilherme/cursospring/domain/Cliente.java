@@ -6,17 +6,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.guilherme.cursospring.domain.enums.PerfilDeUsuario;
 import com.guilherme.cursospring.domain.enums.TipoCliente;
 
 @Entity
@@ -47,8 +50,15 @@ public class Cliente implements Serializable {
 	private Set<String> telefones = new HashSet<>(); /*A classe telefone é tão simples q nem precisa de uma classe só pra ela
 														eu posso criar uma lista do tipo SET (q nao aceita repetição) pra ela */
 	
+	
+	//O EAGER define que quando um cliente for buscado, o perfil dele seja buscado junto
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	public Cliente() {
-		
+		//Com isso sempre que eu criar um usuario novo, por padrão ele terá perfil de cliente
+		addPerfilDeUsuario(PerfilDeUsuario.CLIENTE);
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfOucnpj, TipoCliente tipo, String senha) {
@@ -60,6 +70,7 @@ public class Cliente implements Serializable {
 		//operador ternario, pra caso não tenha um tipo, ele atribua nulo, caso tenha, ele da o código
 		this.tipo = (tipo==null) ? null : tipo.getCod();
 		this.senha = senha;
+		addPerfilDeUsuario(PerfilDeUsuario.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -108,6 +119,15 @@ public class Cliente implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Set<PerfilDeUsuario> getPerfis() {
+		//essa função vai percorrer a lista de perfis de usuario e converter (por meio do to Enum) as strings em inteiros
+		return perfis.stream().map(x -> PerfilDeUsuario.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfilDeUsuario(PerfilDeUsuario perfilDeUsuario) {
+		perfis.add(perfilDeUsuario.getCod());
 	}
 
 	public List<Endereco> getEnderecos() {
