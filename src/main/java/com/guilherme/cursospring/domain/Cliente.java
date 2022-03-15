@@ -31,6 +31,8 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOucnpj;
 	private Integer tipo; //Internamente salva como um inteiro, mas externamente o sistema vai ver como um tipo TipoCliente
+	@JsonIgnore
+	private String senha;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -49,7 +51,7 @@ public class Cliente implements Serializable {
 		
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOucnpj, TipoCliente tipo) {
+	public Cliente(Integer id, String nome, String email, String cpfOucnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -57,6 +59,7 @@ public class Cliente implements Serializable {
 		this.cpfOucnpj = cpfOucnpj;
 		//operador ternario, pra caso não tenha um tipo, ele atribua nulo, caso tenha, ele da o código
 		this.tipo = (tipo==null) ? null : tipo.getCod();
+		this.senha = senha;
 	}
 
 	public Integer getId() {
@@ -97,6 +100,14 @@ public class Cliente implements Serializable {
 
 	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public List<Endereco> getEnderecos() {
@@ -139,6 +150,8 @@ public class Cliente implements Serializable {
 			return false;
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
-	}	
+	}
+
+		
 	
 }

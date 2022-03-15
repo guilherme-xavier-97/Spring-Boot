@@ -26,6 +26,8 @@ public class ClienteTelefoneEnderecoDTO implements Serializable {
 	private String cpfOucnpj;
 	
 	private Integer tipo;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	private String senha;
 	private Integer id;
 	private String logradouro;
 	
@@ -159,6 +161,14 @@ public class ClienteTelefoneEnderecoDTO implements Serializable {
 
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	
