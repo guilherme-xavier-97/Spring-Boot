@@ -75,5 +75,10 @@ public class UserSpringSecurity implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
+	public boolean hasRole(PerfilDeUsuario perfil) {
+		//Verifica qual o perfil de usuario e ja converte pro tipo GrantedAuthority, que é o tipo da lista
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
+	}
 
 }
