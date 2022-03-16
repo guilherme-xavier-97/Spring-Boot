@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//Esse vetor indica qual tipo de acesso vou liberar no endpoint, nesse caso só requisições do tipo POST são aceitas
 		private static final String[] PUBLIC_MATCHERS_POST = {
-				"/clientes/**"
+				"/clientes/**",
+				"/auth/forgot/**"
 		};
 
 	@Override
@@ -65,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().and().csrf().disable();
 		//Esse método informa os endpoints liberados e diz que fora eles, todos os outros precisam de autenticação
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_POST).permitAll()
+			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
 			.anyRequest().authenticated();
