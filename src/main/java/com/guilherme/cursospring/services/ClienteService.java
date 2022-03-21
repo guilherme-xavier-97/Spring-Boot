@@ -1,5 +1,6 @@
 package com.guilherme.cursospring.services;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,10 @@ public class ClienteService {
 	
 	@Autowired
 	private S3Service s3Service;
+	
+	@Autowired
+	private ImageService imageService;
+	
 	
 	public Cliente readOne(Integer id) {
 		//Confirmação se o cliente está logado, se ele tem perfil de ADMIN  e se ele está tentando ver os dados dele mesmo ou de outro cliente
@@ -133,11 +138,11 @@ public class ClienteService {
 			throw new AuthorizationException("Acesso negado");
 		}
 		
-		URI uri = s3Service.uploadFile(multipartFile);
-		Cliente cli = readOne(user.getId());
-		cli.setImageURl(uri.toString());
-		repo.save(cli);
-		return uri;
+		//Faz a imagem vinda na requisição ser do "tipo" BufferedImage e salva no S3
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		String fileName = multipartFile.getOriginalFilename();
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
+
 		
 	}
 	

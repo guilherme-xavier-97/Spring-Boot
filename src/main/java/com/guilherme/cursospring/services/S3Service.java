@@ -27,7 +27,7 @@ public class S3Service {
 	@Value("${s3.bucket}")
 	private String bucketName;
 
-	//a classe MultipartFIle indica que um arquivo será passado na requisição
+	//a classe MultipartFIle indica que um arquivo será passado na requisição. Então (acho) que esse primeiro método serve só pra preparar a requisição pra receber um arquivo
 	public URI uploadFile(MultipartFile multipartFile) {
 		try {
 			// Pega o nome do arquivo no meu diretório
@@ -44,6 +44,7 @@ public class S3Service {
 
 	}
 
+	//Esse segundo método é o que de fato salva a imagem (acho)
 	public URI uploadFile(InputStream inputStream, String fileName, String contentType) {
 
 		try {
