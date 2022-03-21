@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	//Esse vetor indica qual tipo de acesso vou liberar no endpoint, nesse caso só requisições do tipo POST são aceitas
 		private static final String[] PUBLIC_MATCHERS_POST = {
-				"/clientes/**",
+				"/clientes/",
+				"/clientes/picture",
 				"/auth/forgot/**"
 		};
 
