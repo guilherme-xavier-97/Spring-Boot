@@ -12,8 +12,6 @@ target/
 .settings
 .springBeans
 .sts4-cache
-aws.access_key_id=AKIAX5S6VQRXQUDD5Q5V
-aws.secret_access_key=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
 
 ### IntelliJ IDEA ###
 .idea
