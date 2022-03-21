@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.guilherme.cursospring.domain.enums.PerfilDeUsuario;
 
 
-//Depois tentar criar uma lógica pro token expirar
 public class UserSpringSecurity implements UserDetails {
 	private static final long serialVersionUID = 8799691292221684863L;
 	

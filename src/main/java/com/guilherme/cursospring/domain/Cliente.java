@@ -56,6 +56,17 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 	
+	private String imageURl;
+	
+	public String getImageURl() {
+		return imageURl;
+	}
+
+	public void setImageURl(String imageURl) {
+		this.imageURl = imageURl;
+	}
+	
+	
 	public Cliente() {
 		//Com isso sempre que eu criar um usuario novo, por padrão ele terá perfil de cliente
 		addPerfilDeUsuario(PerfilDeUsuario.CLIENTE);
@@ -171,7 +182,6 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-
-		
+	
 	
 }

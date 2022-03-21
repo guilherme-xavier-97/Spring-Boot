@@ -12,5 +12,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	//Cada atributo da entidade Cliente pode gerar um método find prórpro, nem preciso criar
 	@Transactional(readOnly = true)
 	Cliente findByEmail(String email);
+	
 
 }
