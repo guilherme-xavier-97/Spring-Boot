@@ -71,6 +71,13 @@ public class ClientesResource {
 		
 	}
 	
+	//Método para identificar p cliente via email durante a sessão, sem acesso ao BD
+	@RequestMapping(value="/email", method=RequestMethod.GET)
+	public ResponseEntity<Cliente> find(@RequestParam(value="value") String email) {
+		Cliente obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteTelefoneEnderecoDTO objDTO) { //O Request Body converte os dados JSON para um objeto JAVA
 		Cliente obj = service.fromDTO(objDTO);

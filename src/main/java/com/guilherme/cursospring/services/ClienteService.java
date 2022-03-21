@@ -146,4 +146,19 @@ public class ClienteService {
 		
 	}
 	
+	//Esse método serve pra fazer uma busca por email, já que quando o usuario estiver fazendo as compras, os unicos dados que a sessão vai armazenar é o token e o email, pra servir de identificador do cliente, mais nada do BD
+	public Cliente findByEmail(String email) {
+		UserSpringSecurity user = UserService.authenticated();
+		if (user == null || !user.hasRole(PerfilDeUsuario.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		Cliente obj = repo.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		}
+		return obj;
+	}
+	
 }
