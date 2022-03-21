@@ -81,11 +81,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailService).passwordEncoder(bCryptPasswordEncoder());
 	}
 	
-	//Como o app vai ser acessado por multiplas fontes (ambiente de teste, de desenvolvimento e produção) eu preciso liberar os acessos
+	//Como o app vai ficar online, será acessado por diferetntes fontes, então eu preciso liberar os acessos
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
 	
